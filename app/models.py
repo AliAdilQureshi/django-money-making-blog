@@ -21,7 +21,7 @@ class Post(models.Model):
         ('Popular', 'Polular'),
         ('Recent', 'Recent'),
         ('Editors_Pick', 'Editors_Pick'),
-        ('Treding', 'Treding'),
+        ('Trending', 'Trending'),
         ('Inspiration', 'Inspiration'),
         ('Latest Posts', 'Latest Posts'),
     )

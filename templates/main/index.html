@@ -1,5 +1,5 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 
 
 
@@ -111,98 +111,60 @@
 					<!-- section header -->
 					<div class="section-header">
 						<h3 class="section-title">Editor’s Pick</h3>
-						<img src="images/wave.svg" class="wave" alt="wave" />
+						<img src="{% static 'images/wave.svg' %}" class="wave" alt="wave" />
 					</div>
 
 					<div class="padding-30 rounded bordered">
 						<div class="row gy-5">
+                            {% for i in Editors_Pick %}
+                                {% if forloop.counter == 1 %}
 							<div class="col-sm-6">
 								<!-- post -->
 								<div class="post">
 									<div class="thumb rounded">
-										<a href="category.html" class="category-badge position-absolute">Lifestyle</a>
+										<a href="category.html" class="category-badge position-absolute">{{ i.category }}</a>
 										<span class="post-format">
 											<i class="icon-picture"></i>
 										</span>
 										<a href="blog-single.html">
 											<div class="inner">
-												<img src="images/posts/editor-lg.jpg" alt="post-title" />
+												<img src="{{ i.featured_image }}" alt="post-title" />
 											</div>
 										</a>
 									</div>
 									<ul class="meta list-inline mt-4 mb-0">
-										<li class="list-inline-item"><a href="#"><img src="images/other/author-sm.png" class="author" alt="author"/>Katen Doe</a></li>
-										<li class="list-inline-item">29 March 2021</li>
+										<li class="list-inline-item"><a href="#"><img src="images/other/author-sm.png" class="author" alt="author"/>{{ i.author }}</a></li>
+										<li class="list-inline-item">{{ i.date }}</li>
 									</ul>
-									<h5 class="post-title mb-3 mt-3"><a href="blog-single.html">15 Unheard Ways To Achieve Greater Walker</a></h5>
-									<p class="excerpt mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy</p>
+									<h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ i.title | truncatechars:35 }}</a></h5>
+									<p class="excerpt mb-0">{{ i.content | truncatechars:200 | safe }}</p>
 								</div>
 							</div>
+                                {% endif %}
+                            {% endfor %}
 							<div class="col-sm-6">
+
+
 								<!-- post -->
+                                {% for i in Editors_Pick|slice:"1:5" %}
 								<div class="post post-list-sm square">
 									<div class="thumb rounded">
 										<a href="blog-single.html">
 											<div class="inner">
-												<img src="images/posts/editor-sm-1.jpg" alt="post-title" />
+												<img src="{{ i.featured_image }}" alt="post-title" />
 											</div>
 										</a>
 									</div>
 									<div class="details clearfix">
-										<h6 class="post-title my-0"><a href="blog-single.html">3 Easy Ways To Make Your iPhone Faster</a></h6>
+										<h6 class="post-title my-0"><a href="blog-single.html">{{ i.title | truncatechars:35 }}</a></h6>
 										<ul class="meta list-inline mt-1 mb-0">
-											<li class="list-inline-item">29 March 2021</li>
+											<li class="list-inline-item">{{ i.date }}</li>
 										</ul>
 									</div>
 								</div>
-								<!-- post -->
-								<div class="post post-list-sm square">
-									<div class="thumb rounded">
-										<a href="blog-single.html">
-											<div class="inner">
-												<img src="images/posts/editor-sm-2.jpg" alt="post-title" />
-											</div>
-										</a>
-									</div>
-									<div class="details clearfix">
-										<h6 class="post-title my-0"><a href="blog-single.html">An Incredibly Easy Method That Works For All</a></h6>
-										<ul class="meta list-inline mt-1 mb-0">
-											<li class="list-inline-item">29 March 2021</li>
-										</ul>
-									</div>
-								</div>
-								<!-- post -->
-								<div class="post post-list-sm square">
-									<div class="thumb rounded">
-										<a href="blog-single.html">
-											<div class="inner">
-												<img src="images/posts/editor-sm-3.jpg" alt="post-title" />
-											</div>
-										</a>
-									</div>
-									<div class="details clearfix">
-										<h6 class="post-title my-0"><a href="blog-single.html">10 Ways To Immediately Start Selling Furniture</a></h6>
-										<ul class="meta list-inline mt-1 mb-0">
-											<li class="list-inline-item">29 March 2021</li>
-										</ul>
-									</div>
-								</div>
-								<!-- post -->
-								<div class="post post-list-sm square">
-									<div class="thumb rounded">
-										<a href="blog-single.html">
-											<div class="inner">
-												<img src="images/posts/editor-sm-4.jpg" alt="post-title" />
-											</div>
-										</a>
-									</div>
-									<div class="details clearfix">
-										<h6 class="post-title my-0"><a href="blog-single.html">15 Unheard Ways To Achieve Greater Walker</a></h6>
-										<ul class="meta list-inline mt-1 mb-0">
-											<li class="list-inline-item">29 March 2021</li>
-										</ul>
-									</div>
-								</div>
+                                {% endfor %}
+
+
 							</div>
 						</div>
 					</div>
@@ -213,7 +175,7 @@
 					<div class="ads-horizontal text-md-center">
 						<span class="ads-title">- Sponsored Ad -</span>
 						<a href="#">
-							<img src="images/ads/ad-750.png" alt="Advertisement" />
+							<img src="{% static 'images/ads/ad-750.png' %}" alt="Advertisement" />
 						</a>
 					</div>
 
@@ -222,118 +184,108 @@
 					<!-- section header -->
 					<div class="section-header">
 						<h3 class="section-title">Trending</h3>
-						<img src="images/wave.svg" class="wave" alt="wave" />
+						<img src="{% static 'images/wave.svg' %}" class="wave" alt="wave" />
 					</div>
 
 					<div class="padding-30 rounded bordered">
 						<div class="row gy-5">
 							<div class="col-sm-6">
+
+                                {% for i in Trending %}
+{#                                    show just one pic#}
+                                    {% if forloop.counter == 1 %}
+
 								<!-- post large -->
 								<div class="post">
 									<div class="thumb rounded">
-										<a href="category.html" class="category-badge position-absolute">Culture</a>
+										<a href="category.html" class="category-badge position-absolute">{{ i.category }}</a>
 										<span class="post-format">
 											<i class="icon-picture"></i>
 										</span>
 										<a href="blog-single.html">
 											<div class="inner">
-												<img src="images/posts/trending-lg-1.jpg" alt="post-title" />
+												<img src="{{ i.featured_image }}" alt="post-title" />
 											</div>
 										</a>
 									</div>
 									<ul class="meta list-inline mt-4 mb-0">
-										<li class="list-inline-item"><a href="#"><img src="images/other/author-sm.png" class="author" alt="author"/>Katen Doe</a></li>
-										<li class="list-inline-item">29 March 2021</li>
+										<li class="list-inline-item"><a href="#"><img src="images/other/author-sm.png" class="author" alt="author"/>{{ i.author }}</a></li>
+										<li class="list-inline-item">{{ i.title }}</li>
 									</ul>
-									<h5 class="post-title mb-3 mt-3"><a href="blog-single.html">Facts About Business That Will Help You Success</a></h5>
-									<p class="excerpt mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy</p>
+									<h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ i.title | truncatechars:35 }}</a></h5>
+									<p class="excerpt mb-0">{{ i.content | truncatechars:200 | safe }} </p>
 								</div>
+                                    {% endif %}
+                                {% endfor %}
+
 								<!-- post -->
+
+                            {% for i in Trending|slice:'1:3' %}
 								<div class="post post-list-sm square before-seperator">
 									<div class="thumb rounded">
 										<a href="blog-single.html">
 											<div class="inner">
-												<img src="images/posts/trending-sm-1.jpg" alt="post-title" />
+												<img src="{{ i.featured_image }}" alt="post-title" />
 											</div>
 										</a>
 									</div>
 									<div class="details clearfix">
-										<h6 class="post-title my-0"><a href="blog-single.html">3 Easy Ways To Make Your iPhone Faster</a></h6>
+										<h6 class="post-title my-0"><a href="blog-single.html">{{ i.title | truncatechars:35 }}</a></h6>
 										<ul class="meta list-inline mt-1 mb-0">
-											<li class="list-inline-item">29 March 2021</li>
+											<li class="list-inline-item">{{ i.date }}</li>
 										</ul>
 									</div>
 								</div>
-								<!-- post -->
-								<div class="post post-list-sm square before-seperator">
-									<div class="thumb rounded">
-										<a href="blog-single.html">
-											<div class="inner">
-												<img src="images/posts/trending-sm-2.jpg" alt="post-title" />
-											</div>
-										</a>
-									</div>
-									<div class="details clearfix">
-										<h6 class="post-title my-0"><a href="blog-single.html">An Incredibly Easy Method That Works For All</a></h6>
-										<ul class="meta list-inline mt-1 mb-0">
-											<li class="list-inline-item">29 March 2021</li>
-										</ul>
-									</div>
-								</div>
+								{% endfor %}
+
+
 							</div>
 							<div class="col-sm-6">
 								<!-- post large -->
+                                {% for i in Trending %}
+                                    {% if forloop.counter == 4 %}
 								<div class="post">
 									<div class="thumb rounded">
-										<a href="category.html" class="category-badge position-absolute">Inspiration</a>
+										<a href="category.html" class="category-badge position-absolute">{{ i.category }}</a>
 										<span class="post-format">
 											<i class="icon-earphones"></i>
 										</span>
 										<a href="blog-single.html">
 											<div class="inner">
-												<img src="images/posts/trending-lg-2.jpg" alt="post-title" />
+												<img src="{{ i.featured_image }}" alt="post-title" />
 											</div>
 										</a>
 									</div>
 									<ul class="meta list-inline mt-4 mb-0">
 										<li class="list-inline-item"><a href="#"><img src="images/other/author-sm.png" class="author" alt="author"/>Katen Doe</a></li>
-										<li class="list-inline-item">29 March 2021</li>
+										<li class="list-inline-item">{{ i.date }}</li>
 									</ul>
-									<h5 class="post-title mb-3 mt-3"><a href="blog-single.html">5 Easy Ways You Can Turn Future Into Success</a></h5>
-									<p class="excerpt mb-0">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy</p>
+									<h5 class="post-title mb-3 mt-3"><a href="blog-single.html">{{ i.title | truncatechars:35 }}</a></h5>
+									<p class="excerpt mb-0">{{ i.content | truncatechars:200 | safe }}</p>
 								</div>
+                                    {% endif %}
+                                {% endfor %}
 								<!-- post -->
+
+                            {% for i in Trending|slice:'4:6' %}
 								<div class="post post-list-sm square before-seperator">
 									<div class="thumb rounded">
 										<a href="blog-single.html">
 											<div class="inner">
-												<img src="images/posts/trending-sm-3.jpg" alt="post-title" />
+												<img src="{{ i.featured_image }}" alt="post-title" />
 											</div>
 										</a>
 									</div>
 									<div class="details clearfix">
-										<h6 class="post-title my-0"><a href="blog-single.html">Here Are 8 Ways To Success Faster</a></h6>
+										<h6 class="post-title my-0"><a href="blog-single.html">{{ i.title | truncatechars:35 }}</a></h6>
 										<ul class="meta list-inline mt-1 mb-0">
-											<li class="list-inline-item">29 March 2021</li>
+											<li class="list-inline-item">{{ i.date }}</li>
 										</ul>
 									</div>
 								</div>
-								<!-- post -->
-								<div class="post post-list-sm square before-seperator">
-									<div class="thumb rounded">
-										<a href="blog-single.html">
-											<div class="inner">
-												<img src="images/posts/trending-sm-4.jpg" alt="post-title" />
-											</div>
-										</a>
-									</div>
-									<div class="details clearfix">
-										<h6 class="post-title my-0"><a href="blog-single.html">Master The Art Of Nature With These 7 Tips</a></h6>
-										<ul class="meta list-inline mt-1 mb-0">
-											<li class="list-inline-item">29 March 2021</li>
-										</ul>
-									</div>
-								</div>
+								{% endfor %}
+
+
 							</div>
 						</div>
 					</div>
