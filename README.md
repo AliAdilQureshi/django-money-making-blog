@@ -1,5 +1,4 @@
 # django-money-making-blog
-# Hospital-Bed-Availability-System
 ![image1](https://user-images.githubusercontent.com/44570520/158066946-19f4d81a-5755-4ce1-a036-8574bfd3e628.PNG)
 ![image3](https://user-images.githubusercontent.com/44570520/158066975-c6c89aef-73fb-41da-b0ef-14b6f4990b66.PNG)
 ![image4](https://user-images.githubusercontent.com/44570520/158066978-0f55dc0b-8b99-4ba5-a630-331f0ec70419.PNG)
